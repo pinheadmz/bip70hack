@@ -1,7 +1,7 @@
 
 ### This tool intentionally breaks secure protocols and could destory your bitcoins forever.
 
-Use at your own risk :-)
+### Use at your own risk :-)
 
 [What is BIP70?](https://github.com/bitcoin/bips/blob/master/bip-0070.mediawiki)
 
