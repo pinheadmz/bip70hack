@@ -1,0 +1,27 @@
+<!doctype html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="bip70browser2.js"></script>
+<script>
+  function displayDetails(pr){
+      p = PaymentRequest.fromRaw(pr);
+      d = p.paymentDetails;
+
+      console.log("+++\n", d);
+
+      var amt = d.outputs[0].value;
+      var addr = d.outputs[0].address;
+
+      J = d.outputs[0].toJSON()
+      console.log("---\n", J.value/100000000, J.address);
+  }
+
+  $.ajax({
+    url: "https://bitpay.com/i/8tcWSxFUKW24inUqK45z1o",
+    headers: {Accept: 'application/bitcoin-paymentrequest'},
+    type: "GET",
+    success: function(data) { displayDetails(data) }
+  });
+
+
+
+</script>
