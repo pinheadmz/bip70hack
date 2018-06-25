@@ -3,6 +3,10 @@
 
 ### Use at your own risk :-)
 
+In-browser script fetches the payment request from the URL you enter, decodes it,
+and displays a QR code for a "normal" Bitcoin invoice: just an amount and an address.
+You can then send that amount of Bitcoin to that address from ANY wallet, without completing the BIP70 protocol.
+
 [What is BIP70?](https://github.com/bitcoin/bips/blob/master/bip-0070.mediawiki)
 
 ### Why is there a controversy?
