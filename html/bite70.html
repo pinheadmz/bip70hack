@@ -1,9 +1,17 @@
 <!doctype html>
+<head>
+<title>Bip70 Hack</title>
+</head>
+<body>
+
+Yo.
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="bip70browser2.js"></script>
+<script src="buffer.js"></script>
+<script src="bip70webpack.js"></script>
 <script>
   function displayDetails(pr){
-      p = PaymentRequest.fromRaw(pr);
+      p = bip70.PaymentRequest.fromRaw(pr);
       d = p.paymentDetails;
 
       console.log("+++\n", d);
@@ -15,13 +23,28 @@
       console.log("---\n", J.value/100000000, J.address);
   }
 
+  var url = "https://bitpay.com/i/TKHcLUjE5McRpNwp3nf6vA";
+  
+  var oReq = new XMLHttpRequest();
+  oReq.open("GET", url, true);
+  oReq.responseType = "arraybuffer";
+  oReq.setRequestHeader('Accept', 'application/bitcoin-paymentrequest');
+
+  oReq.onload = function(oEvent) {
+    console.log(oReq.response);
+    var buff = new buffer.Buffer(oReq.response);
+    displayDetails(buff);
+  };
+
+oReq.send();
+
+/*
   $.ajax({
-    url: "https://bitpay.com/i/8tcWSxFUKW24inUqK45z1o",
+    url: "https://bitpay.com/i/XfS3Q3vmJfyqLTuQWRLC5R",
     headers: {Accept: 'application/bitcoin-paymentrequest'},
     type: "GET",
-    success: function(data) { displayDetails(data) }
+    success: function(data) {console.log(data); displayDetails(data) }
   });
-
-
-
+*/
 </script>
+</body>
