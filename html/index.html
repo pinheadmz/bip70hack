@@ -43,7 +43,7 @@ body{height:100%}
     <div class="col-sm">
 
       OUTPUT:
-      <div id="qrcode"></div>
+      <div id="outputs"></div>
 
     </div>
   </div>
@@ -83,8 +83,16 @@ body{height:100%}
 
   // draw QR code for each output
   function showQR(amt, addr, memo){
-    var btcuri = "bitcoin:" + addr + "?amount=" + amt + "&label=" + memo.replace(/\s/g, '-');;
-    var qrcode = new QRCode("qrcode", {
+    var btcuri = "bitcoin:" + addr + "?amount=" + amt + "&label=" + memo.replace(/\s/g, '-');
+
+    var text = "<div><a href='" + btcuri + "'>Click here to open in wallet:<br>" + btcuri + "</a><div>";
+    document.getElementById('outputs').innerHTML += text;
+
+    var qrDiv = document.createElement('div');
+    qrDiv.id = 'QR' + parseInt(Math.random()*10000);
+    document.getElementById('outputs').appendChild(qrDiv);
+
+    var qrcode = new QRCode(qrDiv.id, {
       text: btcuri,
       width: 256,
       height: 256,
